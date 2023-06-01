@@ -10,12 +10,77 @@
 9 5 3 2
 8 4 4 2
 */
+/*
+int [,] Create2DArray (int rows, int cols, int min, int max)
+{
+    int [,] array2D = new int [rows, cols];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            array2D[i,j] = new Random().Next(min, max + 1);
+        }
+    }
+    return array2D;
+}
+
+void Print2DArray (int [,] array2D)
+{
+    for (int i = 0; i < array2D.GetLength(0); i++)
+    {
+        for (int j = 0; j < array2D.GetLength(1); j++)
+        {
+            Console.Write(array2D[i,j] + " ");
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+
+int [,] SortArray (int [,] array2D)
+{
+    int minIndex = 0;
+    int maxIndex = 1; 
+    if(minIndex < array2D.GetLength(0) && maxIndex > array2D.GetLength(0))
+        for (int i = 0; i < array2D.GetLength(0); i++)
+        {
+            for (int j = 0; j < array2D.GetLength(1); j++)
+            {
+                // int temp = array2D[minIndex, j];
+              //   array2D[i,j] = array2D[minIndex, j];
+                 array2D[minIndex, j] = array2D[maxIndex, j];
+              //   array2D[maxIndex, j] = temp;
+            }  
+        } 
+        return array2D;
+}   
+
+/*
+Задача с семинара, пример
+           int temp = array2D[userRow1, j];
+            array2D[userRow1, j] = array2D[userRow2, j];
+            array2D[userRow2, j] = temp;
+            return array2D;
+        }
+*/ 
 
 
+/*
+Console.Write("Enter rows number: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter columns number: ");
+int columns = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter min number: ");
+int min = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter max number: ");
+int max = Convert.ToInt32(Console.ReadLine());
 
-
-
-
+int [,] createdArray = Create2DArray(rows, columns, min, max);
+Print2DArray(createdArray);
+Console.WriteLine();
+int [,] changedArray = SortArray(createdArray);
+Print2DArray(changedArray);
+*/
 
 
 
