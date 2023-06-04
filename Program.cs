@@ -82,7 +82,7 @@ int [,] changedArray = SortArray(createdArray);
 Print2DArray(changedArray);
 */
 
-
+/////////////////////////////////////////////////////////////
 
 //Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет 
 //находить строку с наименьшей суммой элементов.
@@ -159,6 +159,8 @@ int [,] changedArray = SumFinderElem(createdArray);
 ShowArray(changedArray);
 */
 
+//////////////////////////////////////////////////////////
+
 //Задача 58: Задайте две матрицы. Напишите программу, которая будет находить 
 //произведение двух матриц.
 /*
@@ -171,11 +173,7 @@ ShowArray(changedArray);
 */
 
 
-
-
-
-
-
+////////////////////////////////////////////////////////////
 
 //Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
 //Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
@@ -188,11 +186,52 @@ ShowArray(changedArray);
 */
 
 
+int [,,] Create3DArray (int z, int yRow, int xCol, int min, int max)
+{
+    int [,,] created3DArray = new int [z, yRow, xCol];
+    for (int i = 0; i < created3DArray.GetLength(0); i++) //перебор страниц
+    {
+        for (int j = 0; j < created3DArray.GetLength(1); j++) //перебор строк
+        {
+            for (int k = 0; k <created3DArray.GetLength(2); k++) //перебор колонок
+            { 
+                created3DArray[i,j,k] = new Random().Next(min, max + 1);
+            }
+        }
+    }
+    return created3DArray;
+}
+
+void Show3DArray (int [,,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(2); k++)
+            {
+                Console.Write(array[i,j,k] + " ");
+            }
+            Console.WriteLine();
+        } 
+        Console.WriteLine();
+    }
+}
 
 
 
+Console.Write("Enter list number: ");
+int lists = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter rows number: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter columns number: ");
+int columns = Convert.ToInt32(Console.ReadLine());
 
+int minVal = 10;
+int maxVal = 99;
 
+int [,,] createdArray = Create3DArray(lists, rows, columns, minVal, maxVal);
+Show3DArray(createdArray);
 
 
 
