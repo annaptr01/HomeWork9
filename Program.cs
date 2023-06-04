@@ -94,12 +94,70 @@ Print2DArray(changedArray);
 5 2 6 7
 Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 */
+/*
+int [,] CreateArray (int rows, int columns, int min, int max)
+{
+    int [,] createdArray = new int [rows, columns];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            createdArray[i,j] = new Random().Next(min, max + 1);
+        }
+    }
+    return createdArray;
+}
 
+void ShowArray (int [,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i,j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
 
+int [,] SumFinderElem (int [,] array2D)
+{
+    int sum = 0;
+    int count = 0;
+    int minI = 0;
+    for (int i = 0; i < array2D.GetLength(0); i++)
+    {
+        for (int j = 0; j < array2D.GetLength(1); j++)
+        { 
+            sum = array2D[i,j] + count;
+            minI = array2D[minI, j];
+            count++;
+            if(array2D[i,j] < array2D[minI,j])
+            {
+                count = array2D[minI,j];
+                Console.WriteLine(count + " this row has minimum sum");
+            }
+        }
+        
+    }
+    return array2D;
+}
 
+Console.Write("Enter rows number: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter columns number: ");
+int columns = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter min number: ");
+int min = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter max number: ");
+int max = Convert.ToInt32(Console.ReadLine());
 
-
-
+int [,] createdArray = CreateArray(rows, columns, min, max);
+ShowArray(createdArray);
+Console.WriteLine();
+int [,] changedArray = SumFinderElem(createdArray);
+ShowArray(changedArray);
+*/
 
 //Задача 58: Задайте две матрицы. Напишите программу, которая будет находить 
 //произведение двух матриц.
