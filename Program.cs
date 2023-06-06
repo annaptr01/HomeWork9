@@ -171,6 +171,52 @@ ShowArray(changedArray);
 18 20
 15 18
 */
+/*
+int [,][,] CreateArray (int rows, int columns, int min, int max)
+{
+    int [,] createdArray = new int [rows, columns];
+    int [,] newArray = new int [rows, columns];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            createdArray[i,j] = new Random().Next(min, max + 1);
+            newArray[i,j] = new Random().Next(min, max + 1);
+        }
+    }
+    return createdArray;
+    return newArray;
+}
+
+void ShowArray (int [,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i,j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+void ShowArray (int [,] array2D)
+{
+    for (int i = 0; i < array2D.GetLength(0); i++)
+    {
+        for (int j = 0; j < array2D.GetLength(1); j++)
+        {
+            Console.Write(array2D[i,j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int [,] MultiplicationOfMatrix (int [,] array, int [,] array2D)
+{
+
+}
+
 
 
 ////////////////////////////////////////////////////////////
@@ -184,18 +230,24 @@ ShowArray(changedArray);
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1)
 */
+//надо проверку на неповторяющиеся числа
 
+/*
 
-int [,,] Create3DArray (int z, int yRow, int xCol, int min, int max)
+int [,,] Create3DArray (int zPage, int yRow, int xCol, int min, int max)
 {
-    int [,,] created3DArray = new int [z, yRow, xCol];
+    int [,,] created3DArray = new int [zPage, yRow, xCol];
     for (int i = 0; i < created3DArray.GetLength(0); i++) //перебор страниц
     {
         for (int j = 0; j < created3DArray.GetLength(1); j++) //перебор строк
         {
             for (int k = 0; k <created3DArray.GetLength(2); k++) //перебор колонок
             { 
-                created3DArray[i,j,k] = new Random().Next(min, max + 1);
+                created3DArray[i,j,k] = new Random().Next(10, 99);
+               // created3DArray[i,j,k] = new Random().Next(10, 99); //заполнение массива рандомными числами от 10 до 99
+               if(zPage == xCol && zPage == yRow || yRow == zPage && yRow == xCol || xCol == zPage && xCol == yRow)
+                  created3DArray[zPage, yRow, xCol] = new Random().Next(10, 99);
+                
             }
         }
     }
@@ -218,10 +270,24 @@ void Show3DArray (int [,,] array)
     }
 }
 
+int [,,] AddIndex (int [,,] array3D)
+{
+    for (int i = 0; i < array3D.GetLength(0); i++)
+    {
+        for (int j = 0; j < array3D.GetLength(1); j++)
+        {
+            for (int k = 0; k < array3D.GetLength(2); k++)
+            {
+                Console.Write(array3D[i,j,k]);
+            }
+        }
+    }
+    return array3D;
+}
 
 
-Console.Write("Enter list number: ");
-int lists = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter Page number: ");
+int pages = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter rows number: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter columns number: ");
@@ -230,11 +296,13 @@ int columns = Convert.ToInt32(Console.ReadLine());
 int minVal = 10;
 int maxVal = 99;
 
-int [,,] createdArray = Create3DArray(lists, rows, columns, minVal, maxVal);
+int [,,] createdArray = Create3DArray(pages, rows, columns, minVal, maxVal);
 Show3DArray(createdArray);
+int [,,] new3dArray = AddIndex(createdArray);
+Show3DArray(new3dArray);
+*/
 
-
-
+    
 //Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 /*
 Например, на выходе получается вот такой массив:
@@ -245,7 +313,37 @@ Show3DArray(createdArray);
 */
 
 
+int [,] CreateArray (int rows, int columns)
+{
+    int [,] createdArray = new int [rows, columns];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+         //  createdArray[i,j] = createdArray[createdArray.GetLength(0) - 1 - i, j];
+           // createdArray[i,j] = createdArray[i, createdArray.GetLength(1) - 1  - j];
+            createdArray[i,j] = createdArray[i, j - 1];
+            createdArray[i, j - 1] = createdArray[i - 1, j - 1];
+            
+        }
+    }
+    return createdArray;
+}
 
+void ShowArray (int [,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i,j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+int rows = 4;
+int cols = 4;
 
-
+int [,] createdArray = CreateArray(rows, cols);
+ShowArray(createdArray);
 
